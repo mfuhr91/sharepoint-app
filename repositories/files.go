@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
-	"starbucks-app/database"
-	"starbucks-app/models"
+	"sharepoint-app/database"
+	"sharepoint-app/models"
 )
 
 type fileRepository struct{}

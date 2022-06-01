@@ -1,4 +1,4 @@
-module starbucks-app
+module sharepoint-app
 
 go 1.18
 

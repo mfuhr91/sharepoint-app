@@ -3,8 +3,8 @@ package templates
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"starbucks-app/repositories"
-	"starbucks-app/services"
+	"sharepoint-app/repositories"
+	"sharepoint-app/services"
 )
 
 var (

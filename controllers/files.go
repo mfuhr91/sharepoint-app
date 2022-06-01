@@ -5,8 +5,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
-	"starbucks-app/services"
-	"starbucks-app/utils"
+	"sharepoint-app/services"
+	"sharepoint-app/utils"
 )
 
 type fileController struct{}

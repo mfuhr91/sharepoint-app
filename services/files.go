@@ -6,8 +6,8 @@ import (
 	"github.com/cloudinary/cloudinary-go/v2/api/uploader"
 	"log"
 	"mime/multipart"
-	"starbucks-app/models"
-	"starbucks-app/repositories"
+	"sharepoint-app/models"
+	"sharepoint-app/repositories"
 	"strings"
 	"time"
 )

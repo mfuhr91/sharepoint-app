@@ -5,7 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"log"
 	"os"
-	"starbucks-app/router"
+	"sharepoint-app/router"
 )
 
 func main() {

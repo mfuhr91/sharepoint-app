@@ -3,10 +3,10 @@ package router
 import (
 	"github.com/gin-gonic/gin"
 	"html/template"
-	"starbucks-app/controllers"
-	"starbucks-app/repositories"
-	"starbucks-app/services"
-	"starbucks-app/templates"
+	"sharepoint-app/controllers"
+	"sharepoint-app/repositories"
+	"sharepoint-app/services"
+	"sharepoint-app/templates"
 	"strconv"
 )
 
