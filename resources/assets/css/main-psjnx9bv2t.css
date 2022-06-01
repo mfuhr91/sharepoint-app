@@ -1,0 +1,134 @@
+body {
+    margin: auto !important;
+    max-width: 500px !important;
+    padding-bottom: 310px;
+}
+
+#inputFile {
+    content: "File";
+}
+
+.cards, .order-card {
+    width: 90% !important;
+}
+
+.cards a {
+    display: block;
+    z-index: 1;
+    cursor: pointer;
+}
+
+
+
+.order-card {
+    padding: 0 !important;
+}
+
+.fullclick {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.add-button, .save-button, .delete-button, .back-button, .reload-button, .search-product-button, .delete-order-button {
+    border-radius: 100px !important;
+    width: 60px !important;
+    height: 60px !important;
+    position: fixed;
+    margin-left: 408px !important;
+    bottom: 40px;
+    box-shadow: 1px 1px 2px gray;
+    z-index: 100;
+}
+
+.delete-confirm-button, .back-confirm-button {
+    border-radius: 100px !important;
+    width: 60px !important;
+    height: 60px !important;
+    box-shadow: 1px 1px 2px gray;
+}
+
+.delete-confirm-button .delete-button-icon {
+    margin-top: 2px;
+}
+
+.back-confirm-button .back-button-icon{
+    margin-top: 7px;
+
+}
+
+.add-button-icon, .save-button-icon, .delete-button-icon, .back-button-icon, .reload-button-icon, .search-product-button-icon {
+    margin-top: 8px;
+}
+
+.save-button, .delete-order-button {
+    bottom: 110px;
+}
+
+.search-product-button {
+    bottom: 250px;
+}
+
+.delete-button {
+    bottom: 180px;
+}
+
+.navbar {
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 100;
+}
+
+.downloadButton {
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: none;
+}
+
+.dropdown-menu {
+    min-width: 0 !important;
+    border: 1px solid lightgray;
+    left: 10px;
+}
+
+.dropdown-menu{
+    inset: 10px auto auto -14px !important;
+    background-color: transparent !important;
+    border: none;
+}
+.dropdown-toggle {
+    background-color: transparent !important;
+    border: none !important;
+
+}
+.dropdown-toggle::after {
+    display: none !important;
+
+}
+
+.removeButton, .downloadButton {
+    border-radius: 100px !important;
+    width: 60px !important;
+    height: 60px !important;
+    margin-bottom: 10px;
+    background-color: red;
+    color: ghostwhite;
+    padding-top: 14px;
+}
+
+.downloadButton {
+    background-color: green;
+    color: ghostwhite;
+    padding-left: 10px;
+    padding-top: 13px;
+}
+
+
+@media (max-width: 500px) {
+    .add-button, .save-button, .delete-button, .back-button, .reload-button, .search-product-button, .delete-order-button {
+        right: 40px !important;
+    }
+}

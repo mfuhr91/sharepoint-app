@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+{{ template "head.html" }}
+<body>
+
+    {{ template "navbar.html" }}
+
+    <div class="container animate__animated animate__fadeIn">
+        <div class="row">
+            <div class="col col-8">
+                <h1 class="m-3">{{ .Title }}</h1>
+            </div>
+        </div>
+        <div class="row">
+            <form id="form" class="col-12 m-auto mt-4" action="/files/save" method="post" enctype="multipart/form-data">
+
+                <div>
+                    <label for="inputFile" class="form-label">Seleccione un archivo</label>
+                    <input onchange="validateFile()" class="form-control form-control-lg" id="inputFile" name="NewFile" type="file">
+                </div>
+
+                <div id="error" class="row d-none m-auto w-100 animate__animated">
+                    <span class="badge m-auto bg-danger">
+                        Debe seleccionar un archivo
+                    </span>
+                </div>
+
+                <div>
+                    <a class="btn btn-secondary m-auto col-5 back-button" href="/files">
+                        <i class="fa-solid fa-angle-left fa-2x back-button-icon"></i>
+                    </a>
+                    <button id="saveBtn" class="btn btn-primary m-auto col-5 save-button" type="submit" disabled>
+                        <i class="fa-solid fa-floppy-disk fa-2x"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+</body>
+</html>
