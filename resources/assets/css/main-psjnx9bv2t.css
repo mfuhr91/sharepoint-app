@@ -133,6 +133,17 @@ body {
     padding-top: 8px;
 }
 
+.removeButton:hover {
+    opacity: 1;
+    background-color: #cb0000;
+    color: ghostwhite;
+}
+
+.downloadButton:hover {
+    background-color: darkgreen;
+    color: ghostwhite;
+}
+
 .downloadButton {
     background-color: green;
     color: ghostwhite;
