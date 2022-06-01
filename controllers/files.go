@@ -32,7 +32,7 @@ func (cont *fileController) Save(c *gin.Context) {
 	
 	_, err = fileService.Save(formFile)
 	if err != nil {
-		log.Printf("error when saving file - %s", err)
+		log.Printf("error when saving the file - %s", err)
 		return
 	}
 	
@@ -40,10 +40,10 @@ func (cont *fileController) Save(c *gin.Context) {
 }
 
 func (cont *fileController) Delete(c *gin.Context) {
-	id := c.Query("id")
+	id := c.Param("id")
 	err := fileService.Delete(id)
 	if err != nil {
-		log.Printf("error when deleting file - %s", err)
+		log.Printf("error when deleting the file - %s", err)
 		return
 	}
 	

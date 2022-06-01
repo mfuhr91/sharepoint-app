@@ -68,9 +68,11 @@
                     </button>
                     <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1">
                         <li>
-                            <a class="dropdown-item removeButton" href="#">
-                                <i class="fa-solid fa-xmark fa-2x"></i>
-                            </a>
+                            <form action="/files/delete/{{ .ID }}" method="POST">
+                                <button type="submit" class="dropdown-item removeButton">
+                                    <i class="fa-solid fa-xmark fa-2x"></i>
+                                </button>
+                            </form>
                         </li>
                         <li>
                             <a class="dropdown-item downloadButton" href="{{ .DownloadUrl }}" download="{{ .Name }}" >

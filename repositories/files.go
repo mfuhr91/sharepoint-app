@@ -2,6 +2,8 @@ package repositories
 
 import (
 	"context"
+	"errors"
+	"fmt"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"starbucks-app/database"
@@ -92,6 +94,22 @@ func (f *fileRepository) GetById(id string) (models.File, error) {
 }
 
 func (f *fileRepository) Delete(id string) error {
+	client, err := database.MongoConnect()
+	if err != nil {
+		return err
+	}
+	
+	collection := client.Database(databaseName).Collection(collectionName)
+	objID, _ := primitive.ObjectIDFromHex(id)
+	
+	res, err := collection.DeleteOne(context.TODO(), bson.M{"_id": objID})
+	if err != nil {
+		return err
+	}
+	
+	if res.DeletedCount == 0 {
+		return errors.New(fmt.Sprintf("document id: %s not found", id))
+	}
 	
 	return nil
 }

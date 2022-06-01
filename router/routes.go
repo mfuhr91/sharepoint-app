@@ -43,6 +43,6 @@ func InitRoutes(r *gin.Engine) {
 	r.GET("/files/delete-confirm", templates.DeleteConfirmRender)
 	
 	r.POST("/files/save", filesController.Save)
-	r.POST("/orders/delete", filesController.Delete)
+	r.POST("/files/delete/:id", filesController.Delete)
 	
 }
