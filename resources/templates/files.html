@@ -135,12 +135,12 @@
 </div>
 
 <!-- Modal Upload-->
-<div onfocusout="showAddBtn()" class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
+<div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="viewModalLabel" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="uploadModalLabel">Subir archivo</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button onclick="showAddBtn()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="form" action="/files/save" method="post" enctype="multipart/form-data">
@@ -151,11 +151,11 @@
                         <label id="inputFileLabel" class="ms-2 fs-2">Subir un archivo</label>
                     </div>
 
-                    <!--<div id="error" class="row d-none m-auto w-100 animate__animated">
-                        <span class="badge m-auto bg-danger">
-                            Debe seleccionar un archivo
+                    <div id="error" class="row m-auto mt-3 w-80 animate__animated">
+                        <span class="badge m-auto text-dark bg-warning">
+                            El tamaño del archivo debe ser menor a 10 Mb
                         </span>
-                    </div>-->
+                    </div>
 
                     <div>
                         <button id="saveBtn" class="btn btn-primary m-auto col-5 save-button" type="submit" disabled>

@@ -82,7 +82,7 @@ const validateFile = () => {
     const saveBtn = document.getElementById("saveBtn")
     const inputFileLabel = document.getElementById("inputFileLabel")
     const form = document.getElementById("form")
-    // const spanError = document.querySelector("#error")
+    const divError = document.querySelector("#error")
 
     let saveButtonDisabled = false;
     let inputFile
@@ -90,7 +90,27 @@ const validateFile = () => {
         inputFile = document.getElementById("inputFile")
         if (inputFile.value == null) {
             saveButtonDisabled = true
-            //spanError.classList.remove("d-none")
+        }
+        let fileNameArr = inputFile.value.split("fakepath\\")
+        inputFileLabel.textContent = fileNameArr[1]
+
+        const fileSize = inputFile.files[0].size
+        if (fileSize > 10485760) { // 10MB
+            saveButtonDisabled = true
+            divError.classList.add("animate__headShake")
+            divError.children[0].classList.remove("bg-warning")
+            divError.children[0].classList.add("bg-danger")
+            divError.children[0].classList.add("text-white")
+            divError.children[0].classList.remove("text-dark")
+
+        } else {
+            divError.classList.remove("animate__headShake")
+            divError.children[0].classList.add("bg-warning")
+            divError.children[0].classList.remove("bg-danger")
+            divError.children[0].classList.remove("text-white")
+            divError.children[0].classList.add("text-dark")
+
+
         }
     }
 
@@ -98,8 +118,6 @@ const validateFile = () => {
         if (saveButtonDisabled) {
             saveBtn.setAttribute("disabled", "")
         } else {
-            let fileNameArr = inputFile.value.split("fakepath\\")
-            inputFileLabel.textContent = fileNameArr[1]
             saveBtn.removeAttribute("disabled")
 
         }
@@ -130,10 +148,18 @@ const cleanInputFile = () => {
     const saveBtn = document.getElementById("saveBtn")
     const inputFile = document.getElementById("inputFile")
     const inputFileLabel = document.getElementById("inputFileLabel")
+    const divError = document.querySelector("#error")
 
     saveBtn.setAttribute("disabled", "")
     inputFile.value = ""
     inputFileLabel.textContent = "Subir un archivo"
+
+    divError.classList.remove("animate__headShake")
+    divError.children[0].classList.add("bg-warning")
+    divError.children[0].classList.remove("bg-danger")
+    divError.children[0].classList.add("text-dark")
+    divError.children[0].classList.remove("text-white")
+
 }
 
 const showAddBtn = () => {
