@@ -1,107 +1,5 @@
-/*window.onload = () => {
-    checkQuantityUpdatePrice()
-    /!*validateForms()*!/
-}*/
-
-/*const searchProduct = async (customerId) => {
-    const itemList = getItemList()
-
-    const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(itemList),
-    };
-    const url = "/products?search=true&customerId=" + customerId
-
-    await fetch(url, options)
-    location.href = url;
-}
-
-const saveFile = async (customerId) => {
-
-    const finalPrice = document.querySelector("#finalPrice").textContent
-    const orderId = document.getElementsByName("id")[0].value
-
-    const itemList = getItemList()
-
-    const customer = {
-        id: customerId,
-    }
-    const order = {
-        id: orderId,
-        customer: customer,
-        items: itemList,
-        price: finalPrice,
-        time: new Date().toISOString()
-    }
-
-    const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(order),
-    };
-
-    await fetch("/orders/save", options)
-    location.href = "/orders"
-}*/
-
-/*
-const checkQuantityUpdatePrice = () => {
-    const list = getItemList()
-    const finalPriceElem = document.querySelector("#finalPrice")
-    let saveButtonDisabled = true;
-
-    let saveOrderBtn = document.querySelector("#saveOrderBtn")
-
-    let finalPrice = 0
-    let errors = false
-    if (finalPriceElem != null) {
-        finalPriceElem.textContent = finalPrice.toString()
-    }
-    for (const i in list) {
-
-        let span = document.querySelector("#error-" + list[i].index)
-
-        finalPrice += list[i].price * list[i].quantity
-
-        finalPriceElem.textContent = finalPrice.toString()
-
-        if ((Number(list[i].quantity) > Number(list[i].stock)) ||
-            (Number(list[i].quantity) <= 0 || list[i].quantity === "")) {
-            span.classList.remove("d-none");
-            span.classList.add("animate__headShake");
-            finalPriceElem.textContent = "0";
-            saveButtonDisabled = true
-            errors = true
-        } else {
-            if (span != null) {
-                span.classList.add("d-none");
-                span.classList.remove("animate__headShake");
-            }
-        }
-
-        if (!errors) {
-            saveButtonDisabled = false
-        }
-    }
-    if (saveOrderBtn != null) {
-
-        if (saveButtonDisabled) {
-            saveOrderBtn.setAttribute("disabled", "")
-        } else {
-            saveOrderBtn.removeAttribute("disabled")
-
-        }
-    }
-
-}*/
 
 const setModalValues = (file) => {
-    console.log(file)
     removeModalValues()
 
     const id = file.id
@@ -149,11 +47,11 @@ const setModalValues = (file) => {
 
 
     const date = new Date(arrTime[0]).toLocaleDateString("es-AR")
-    const newTime = new Date(arrTime[1]).toLocaleTimeString("es-AR")
     modalFooter.textContent = arrTime[1].split(".")[0] + " " + date
 }
 
 const removeModalValues = () => {
+
     const modalLabel = document.getElementById("viewModalLabel")
     const modalImg = document.getElementById("modalImg")
     const modalAudio = document.getElementById("modalAudio")
@@ -165,7 +63,7 @@ const removeModalValues = () => {
     modalFooter.textContent = ""
 
     modalImg.classList.add("d-none")
-    modalImg.setAttribute("src","none")
+    modalImg.setAttribute("src", "none")
 
     modalAudio.classList.add("d-none")
     modalAudio.setAttribute("src", "none")
@@ -182,66 +80,67 @@ const removeModalValues = () => {
 
 const validateFile = () => {
     const saveBtn = document.getElementById("saveBtn")
+    const inputFileLabel = document.getElementById("inputFileLabel")
     const form = document.getElementById("form")
-    const spanError = document.querySelector("#error")
+    // const spanError = document.querySelector("#error")
 
     let saveButtonDisabled = false;
+    let inputFile
     if (form != null) {
-        const inputs = form.getElementsByTagName("input")
-        /*for (let i in inputs) {
-            if (i > 0) {
-                if (inputs[i].value.length === 0 ||
-                    (i <= maxIndexToCheckHasNumber && hasNumber(inputs[i].value))) {
-                    console.log(hasNumber(inputs[i].value))
-                    saveButtonDisabled = true
-                    spanError.classList.remove("d-none");
-                    spanError.classList.add("animate__headShake");
-                    break
-                } else {
-                    if (spanError != null) {
-                        spanError.classList.add("d-none");
-                        spanError.classList.remove("animate__headShake");
-                    }
-                }
-                saveButtonDisabled = false
-            }
-        }*/
+        inputFile = document.getElementById("inputFile")
+        if (inputFile.value == null) {
+            saveButtonDisabled = true
+            //spanError.classList.remove("d-none")
+        }
     }
 
     if (saveBtn != null) {
         if (saveButtonDisabled) {
             saveBtn.setAttribute("disabled", "")
         } else {
+            let fileNameArr = inputFile.value.split("fakepath\\")
+            inputFileLabel.textContent = fileNameArr[1]
             saveBtn.removeAttribute("disabled")
 
         }
     }
 }
 
-const eliminarFile = (element) => {
-
-    let itemCard = element.closest(".card")
-
-    itemCard.remove()
-    checkQuantityUpdatePrice()
-    refreshItems()
-}
-
-const refreshItems = () => {
-    const itemsDivs = document.querySelectorAll(".item-info")
-    itemsDivs.forEach((item, key) => {
-        item.nextElementSibling.setAttribute("id", "error-" + key)
-    })
-}
-
 const setBlur = () => {
-    const container = document.getElementsByClassName("container")
-    console.log(body)
-    //container[0].setAttribute("style":"blur(1002px);")
-}
-/*const dropDown = (id) => {
-    console.log(id)
-    const dropdown = document.getElementsByClassName("dropdown")
+    const title = document.getElementById("title")
+    const backdropDiv = document.getElementById("backdropDiv")
 
-    dropdown.setAttribute("aria-expanded", true)
-}*/
+    title.setAttribute("style", "animation-name: blurOn;z-index: 2;")
+    backdropDiv.setAttribute("style", "animation-name: blurOn;z-index: 2;")
+}
+
+const removeBlur = () => {
+    const backdropDiv = document.getElementById("backdropDiv")
+
+    backdropDiv.setAttribute("style", "animation-name: blurOut; z-index: -1; transition: z-index linear 1s;")
+}
+
+const hideAddBtn = () => {
+    const addBtn = document.getElementById("addBtn")
+    addBtn.classList.add("d-none")
+}
+
+const cleanInputFile = () => {
+    hideAddBtn()
+    const saveBtn = document.getElementById("saveBtn")
+    const inputFile = document.getElementById("inputFile")
+    const inputFileLabel = document.getElementById("inputFileLabel")
+
+    saveBtn.setAttribute("disabled", "")
+    inputFile.value = ""
+    inputFileLabel.textContent = "Subir un archivo"
+}
+
+const showAddBtn = () => {
+    const addBtn = document.getElementById("addBtn")
+
+    setTimeout(() => {
+        addBtn.classList.remove("d-none")
+    },300)
+    console.log("remove")
+}

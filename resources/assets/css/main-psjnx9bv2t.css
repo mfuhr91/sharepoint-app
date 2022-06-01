@@ -4,8 +4,54 @@ body {
     padding-bottom: 310px;
 }
 
+#backdropDiv {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: calc(100vw);
+    height: calc(100vh);
+    background-color: transparent;
+    z-index: -1;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes blurOn {
+    from {
+        -webkit-backdrop-filter: blur(0px);
+        backdrop-filter: blur(0px)
+    }
+    to {
+        -webkit-backdrop-filter: blur(2px);
+        backdrop-filter: blur(2px)
+    }
+}
+
+@keyframes blurOut {
+    from {
+        -webkit-backdrop-filter: blur(2px);
+        backdrop-filter: blur(2px)
+    }
+    to {
+        -webkit-backdrop-filter: blur(0px);
+        backdrop-filter: blur(0px)
+    }
+}
+
+#searchDiv {
+    border-radius: 5px;
+    border: solid 1px lightgray;
+    width: 80%;
+    padding-block: 15px;
+}
+
 #inputFile {
     content: "File";
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
 }
 
 .cards, .order-card {
@@ -19,11 +65,6 @@ body {
 }
 
 
-
-.order-card {
-    padding: 0 !important;
-}
-
 .fullclick {
     position: absolute;
     top: 0;
@@ -32,7 +73,7 @@ body {
     bottom: 0;
 }
 
-.add-button, .save-button, .delete-button, .back-button, .reload-button, .search-product-button, .delete-order-button {
+.add-button, .save-button, .reload-button {
     border-radius: 100px !important;
     width: 60px !important;
     height: 60px !important;
@@ -40,39 +81,11 @@ body {
     margin-left: 408px !important;
     bottom: 40px;
     box-shadow: 1px 1px 2px gray;
-    z-index: 100;
+    z-index: 1;
 }
 
-.delete-confirm-button, .back-confirm-button {
-    border-radius: 100px !important;
-    width: 60px !important;
-    height: 60px !important;
-    box-shadow: 1px 1px 2px gray;
-}
-
-.delete-confirm-button .delete-button-icon {
-    margin-top: 2px;
-}
-
-.back-confirm-button .back-button-icon{
-    margin-top: 7px;
-
-}
-
-.add-button-icon, .save-button-icon, .delete-button-icon, .back-button-icon, .reload-button-icon, .search-product-button-icon {
+.add-button-icon, .save-button-icon, .reload-button-icon {
     margin-top: 8px;
-}
-
-.save-button, .delete-order-button {
-    bottom: 110px;
-}
-
-.search-product-button {
-    bottom: 250px;
-}
-
-.delete-button {
-    bottom: 180px;
 }
 
 .navbar {
@@ -92,10 +105,11 @@ body {
     min-width: 0 !important;
     border: 1px solid lightgray;
     left: 10px;
+    z-index: 3;
 }
 
 .dropdown-menu{
-    inset: 10px auto auto -14px !important;
+    inset: 0 auto auto -14px !important;
     background-color: transparent !important;
     border: none;
 }
@@ -128,7 +142,7 @@ body {
 
 
 @media (max-width: 500px) {
-    .add-button, .save-button, .delete-button, .back-button, .reload-button, .search-product-button, .delete-order-button {
+    .add-button, .save-button, .reload-button {
         right: 40px !important;
     }
 }

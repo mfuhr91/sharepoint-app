@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 {{ template "head.html" }}
-<body onclose="removeModalValues()">
+<body>
 
 {{ template "navbar.html" }}
 
 <div class="container animate__animated animate__fadeIn" style="blur(1000)">
+    <div onclick="removeBlur()" id="backdropDiv"></div>
     <div class="row">
         <div class="col-11">
-            <h1 class="m-3">{{ .Title }}</h1>
+            <h1 id="title" class="m-3">{{ .Title }}</h1>
         </div>
     </div>
 
@@ -62,15 +63,16 @@
 
             </div>
             <div class="col-3 m-auto">
-                <div class="dropdown ms-2">
-                    <button class="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <div onfocusout="removeBlur()" class="dropdown ms-2">
+                    <button onclick="setBlur()" class="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa-solid fa-ellipsis-vertical text-dark fa-2x"></i>
                     </button>
-                    <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1">
+
+                    <ul  class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1">
                         <li>
                             <form action="/files/delete/{{ .ID }}" method="POST">
                                 <button type="submit" class="dropdown-item removeButton">
-                                    <i class="fa-solid fa-xmark fa-2x"></i>
+                                    <i class="fa-solid fa-trash fa-2x"></i>
                                 </button>
                             </form>
                         </li>
@@ -95,13 +97,14 @@
     </div>
     {{ end }}
     <div>
-        <a class="btn btn-primary add-button" href="/files/upload">
+        <a id="addBtn" onclick="cleanInputFile()" class="btn btn-primary add-button" data-bs-toggle="modal"
+           data-bs-target="#uploadModal">
             <i class="fa fa-plus fa-2x add-button-icon"></i>
         </a>
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal View -->
 <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm">
         <div class="modal-content">
@@ -110,7 +113,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body m-auto">
-                <img id="modalImg" src="" alt="" width="300" class="d-none">
+
+                <img id="modalImg" src="" alt="" width="300" class="d-none"/>
                 <audio controls id="modalAudio">
                     <source src="" type="">
                 </audio>
@@ -119,13 +123,49 @@
                     <source src="" type="">
                     Your browser does not support the video tag.
                 </video>
+
                 <embed id="modalEmbed" width="191" height="207" name="plugin" src="" type=""
                        class="img-thumbnail d-none">
-
-
             </div>
             <div class="modal-footer">
                 <span id="modalFooter" class="card-text text-muted" style="font-size: 12px"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Upload-->
+<div onfocusout="showAddBtn()" class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="uploadModalLabel">Subir archivo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form" action="/files/save" method="post" enctype="multipart/form-data">
+
+                    <div id="searchDiv" class="m-auto text-center ">
+                        <input onchange="validateFile()" id="inputFile" name="NewFile" type="file">
+                        <i class="fa-solid fa-cloud-arrow-up fa-2x"></i>
+                        <label id="inputFileLabel" class="ms-2 fs-2">Subir un archivo</label>
+                    </div>
+
+                    <!--<div id="error" class="row d-none m-auto w-100 animate__animated">
+                        <span class="badge m-auto bg-danger">
+                            Debe seleccionar un archivo
+                        </span>
+                    </div>-->
+
+                    <div>
+                        <button id="saveBtn" class="btn btn-primary m-auto col-5 save-button" type="submit" disabled>
+                            <i class="fa-solid fa-floppy-disk fa-2x"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <span id="footer" class="card-text text-muted" style="font-size: 12px"></span>
             </div>
         </div>
     </div>
