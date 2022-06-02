@@ -60,7 +60,6 @@
                         {{ .Time.Format "15:04:05 02/01/2006" }}
                     </span>
                 </div>
-
             </div>
             <div class="col-3 m-auto">
                 <div onfocusout="removeBlur()" class="dropdown ms-2">
@@ -125,8 +124,12 @@
                     Your browser does not support the video tag.
                 </video>
 
-                <embed id="modalEmbed" name="plugin" src="" type=""
-                       class="w-100 img-thumbnail d-none">
+                <div id="modalDivMsg" class="row m-auto">
+                    <span class="badge text-wrap text-center text-dark bg-warning">
+                        El servidor no permite la visualización
+                        de este tipo de archivos
+                    </span>
+                </div>
             </div>
             <div class="modal-footer">
                 <span id="modalFooter" class="card-text text-muted" style="font-size: 12px"></span>
@@ -159,7 +162,7 @@
                     </div>
 
                     <div id="info" class="row m-auto mt-3 w-100 animate__animated">
-                        <span class="badge m-auto text-dark bg-warning">
+                        <span class="badge m-auto text-dark bg-warning text-wrap">
                             El tamaño del archivo debe ser menor a 10 Mb
                         </span>
                     </div>

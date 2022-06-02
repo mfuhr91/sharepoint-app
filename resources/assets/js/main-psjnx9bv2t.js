@@ -16,7 +16,7 @@ const setModalValues = (file) => {
     const modalImg = document.getElementById("modalImg")
     const modalAudio = document.getElementById("modalAudio")
     const modalVideo = document.getElementById("modalVideo")
-    const modalEmbed = document.getElementById("modalEmbed")
+    const modalDivMsg = document.getElementById("modalDivMsg")
     const modalFooter = document.getElementById("modalFooter")
 
     modalLabel.textContent = name + "." + ext
@@ -40,9 +40,7 @@ const setModalValues = (file) => {
     if (!icon.includes("video") &&
         !icon.includes("image") &&
         !icon.includes("audio")) {
-        modalEmbed.classList.remove("d-none")
-        modalEmbed.setAttribute("src", url)
-        modalEmbed.setAttribute("type", "application/" + ext)
+        modalDivMsg.classList.remove("d-none")
     }
 
 
@@ -56,7 +54,7 @@ const removeModalValues = () => {
     const modalImg = document.getElementById("modalImg")
     const modalAudio = document.getElementById("modalAudio")
     const modalVideo = document.getElementById("modalVideo")
-    const modalEmbed = document.getElementById("modalEmbed")
+    const modalDivMsg = document.getElementById("modalDivMsg")
     const modalFooter = document.getElementById("modalFooter")
 
     modalLabel.textContent = ""
@@ -73,9 +71,7 @@ const removeModalValues = () => {
     modalVideo.setAttribute("src", "none")
     modalVideo.setAttribute("type", "video/mp4")
 
-    modalEmbed.classList.add("d-none")
-    modalEmbed.setAttribute("src", "none")
-    modalEmbed.setAttribute("type", "application/pdf")
+    modalDivMsg.classList.add("d-none")
 }
 
 const validateFile = () => {
