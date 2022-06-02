@@ -92,6 +92,7 @@ const validateFile = () => {
             saveButtonDisabled = true
         }
         let fileNameArr = inputFile.value.split("fakepath\\")
+        inputFileLabel.classList.add("text-truncate")
         inputFileLabel.textContent = fileNameArr[1]
 
         const fileSize = inputFile.files[0].size

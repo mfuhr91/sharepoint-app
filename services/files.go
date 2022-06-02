@@ -21,6 +21,12 @@ type FileService interface {
 	Delete(id string) error
 }
 
+const (
+	cloudName = "mfuhr91"
+	apikey    = "552315511962245"
+	apiSecret = "5yw3wnPTVa-JiWC1mBAx2oxB5fQ"
+)
+
 var fileRepository repositories.FileRepository
 
 func NewFilesService(repository repositories.FileRepository) FileService {
@@ -67,6 +73,7 @@ func (c fileService) Save(formHeader *multipart.FileHeader) (models.File, error)
 	urlSplited := strings.Split(uploadResult.URL, "upload")
 	downloadUrl := urlSplited[0] + "upload/fl_attachment" + urlSplited[1]
 	
+	file.PublicID = uploadResult.PublicID
 	file.DownloadUrl = downloadUrl
 	file.ViewUrl = uploadResult.URL
 	file, err = fileRepository.Save(file)
@@ -88,20 +95,41 @@ func (c *fileService) GetById(id string) (models.File, error) {
 }
 
 func (c fileService) Delete(id string) error {
-	err := fileRepository.Delete(id)
+	file, err := fileRepository.GetById(id)
 	if err != nil {
 		return err
+	}
+	
+	cld, err := cloudinary.NewFromParams(cloudName, apikey, apiSecret)
+	if err != nil {
+		return err
+	}
+	
+	err = fileRepository.Delete(id)
+	if err != nil {
+		return err
+	}
+	
+	uploadResult, err := cld.Upload.Destroy(context.TODO(), uploader.DestroyParams{PublicID: file.PublicID})
+	if err != nil {
+		return err
+	}
+	
+	if uploadResult.Result == "ok" {
+		log.Printf("file deleted successfully from cloudinary - result: %+v", uploadResult)
+	} else {
+		log.Printf("error file has not deleted from cloudinary - result: %+v", uploadResult)
 	}
 	
 	return nil
 }
 
 func UploadFile(file multipart.File, modelFile models.File) (*uploader.UploadResult, error) {
-	// CLOUDINARY_URL=cloudinary://552315511962245:5yw3wnPTVa-JiWC1mBAx2oxB5fQ@mfuhr91
-	cloudName := "mfuhr91"
-	apikey := "552315511962245"
-	apiSecret := "5yw3wnPTVa-JiWC1mBAx2oxB5fQ"
-	cld, _ := cloudinary.NewFromParams(cloudName, apikey, apiSecret)
+	
+	cld, err := cloudinary.NewFromParams(cloudName, apikey, apiSecret)
+	if err != nil {
+		return &uploader.UploadResult{}, err
+	}
 	
 	uploadResult, err := cld.Upload.Upload(context.TODO(), file, uploader.UploadParams{Folder: "sharepoint-app", ResourceType: "auto", PublicID: modelFile.Name})
 	if err != nil {

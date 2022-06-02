@@ -10,5 +10,6 @@ type File struct {
 	Icon        string    `bson:"Icon"`
 	ViewUrl     string    `bson:"ViewUrl"`
 	DownloadUrl string    `bson:"DownloadUrl"`
+	PublicID    string    `bson:"PublicID"`
 	Time        time.Time `bson:"Time"`
 }

@@ -66,6 +66,7 @@ func (f *fileRepository) Save(file models.File) (models.File, error) {
 			"Icon":        file.Icon,
 			"ViewUrl":     file.ViewUrl,
 			"DownloadUrl": file.DownloadUrl,
+			"PublicID":    file.PublicID,
 			"Time":        file.Time,
 		})
 	if err != nil {

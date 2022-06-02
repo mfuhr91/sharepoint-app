@@ -40,7 +40,5 @@ func MongoConnect() (*mongo.Client, error) {
 		log.Fatal(err)
 	}
 	
-	log.Printf("connecting to: %+v", client)
-	
 	return client, nil
 }
