@@ -82,7 +82,7 @@ const validateFile = () => {
     const saveBtn = document.getElementById("saveBtn")
     const inputFileLabel = document.getElementById("inputFileLabel")
     const form = document.getElementById("form")
-    const divError = document.querySelector("#error")
+    const divInfo = document.querySelector("#info")
 
     let saveButtonDisabled = false;
     let inputFile
@@ -97,18 +97,18 @@ const validateFile = () => {
         const fileSize = inputFile.files[0].size
         if (fileSize > 10485760) { // 10MB
             saveButtonDisabled = true
-            divError.classList.add("animate__headShake")
-            divError.children[0].classList.remove("bg-warning")
-            divError.children[0].classList.add("bg-danger")
-            divError.children[0].classList.add("text-white")
-            divError.children[0].classList.remove("text-dark")
+            divInfo.classList.add("animate__headShake")
+            divInfo.children[0].classList.remove("bg-warning")
+            divInfo.children[0].classList.add("bg-danger")
+            divInfo.children[0].classList.add("text-white")
+            divInfo.children[0].classList.remove("text-dark")
 
         } else {
-            divError.classList.remove("animate__headShake")
-            divError.children[0].classList.add("bg-warning")
-            divError.children[0].classList.remove("bg-danger")
-            divError.children[0].classList.remove("text-white")
-            divError.children[0].classList.add("text-dark")
+            divInfo.classList.remove("animate__headShake")
+            divInfo.children[0].classList.add("bg-warning")
+            divInfo.children[0].classList.remove("bg-danger")
+            divInfo.children[0].classList.remove("text-white")
+            divInfo.children[0].classList.add("text-dark")
 
 
         }
@@ -125,10 +125,8 @@ const validateFile = () => {
 }
 
 const setBlur = () => {
-    const title = document.getElementById("title")
     const backdropDiv = document.getElementById("backdropDiv")
 
-    title.setAttribute("style", "animation-name: blurOn;z-index: 2;")
     backdropDiv.setAttribute("style", "animation-name: blurOn;z-index: 2;")
 }
 
@@ -148,17 +146,17 @@ const cleanInputFile = () => {
     const saveBtn = document.getElementById("saveBtn")
     const inputFile = document.getElementById("inputFile")
     const inputFileLabel = document.getElementById("inputFileLabel")
-    const divError = document.querySelector("#error")
+    const divInfo = document.querySelector("#info")
 
     saveBtn.setAttribute("disabled", "")
     inputFile.value = ""
     inputFileLabel.textContent = "Subir un archivo"
 
-    divError.classList.remove("animate__headShake")
-    divError.children[0].classList.add("bg-warning")
-    divError.children[0].classList.remove("bg-danger")
-    divError.children[0].classList.add("text-dark")
-    divError.children[0].classList.remove("text-white")
+    divInfo.classList.remove("animate__headShake")
+    divInfo.children[0].classList.add("bg-warning")
+    divInfo.children[0].classList.remove("bg-danger")
+    divInfo.children[0].classList.add("text-dark")
+    divInfo.children[0].classList.remove("text-white")
 
 }
 
@@ -169,4 +167,17 @@ const showAddBtn = () => {
         addBtn.classList.remove("d-none")
     },300)
     console.log("remove")
+}
+
+const showUploading = () => {
+    const spinner = document.getElementById("spinner")
+    const divInfo = document.querySelector("#info")
+    const searchDiv = document.getElementById("searchDiv")
+    const saveBtn = document.getElementById("saveBtn")
+
+    spinner.classList.remove("d-none")
+    searchDiv.classList.add("d-none")
+    divInfo.classList.add("d-none")
+    saveBtn.classList.add("d-none")
+
 }

@@ -38,6 +38,26 @@ body {
     }
 }
 
+.spinner {
+    border: 7px solid rgba(0, 0, 0, 0.1);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border-left-color: #0c6efd;
+    animation: spin 1s ease infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
 #searchDiv {
     border-radius: 5px;
     border: solid 1px lightgray;

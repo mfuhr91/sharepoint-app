@@ -65,7 +65,7 @@ func (c fileService) Save(formHeader *multipart.FileHeader) (models.File, error)
 	}
 	
 	urlSplited := strings.Split(uploadResult.URL, "upload")
-	downloadUrl := urlSplited[0] + "upload/fl_attachment:" + file.Name + urlSplited[1]
+	downloadUrl := urlSplited[0] + "upload/fl_attachment" + urlSplited[1]
 	
 	file.DownloadUrl = downloadUrl
 	file.ViewUrl = uploadResult.URL
