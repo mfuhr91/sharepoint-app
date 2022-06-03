@@ -178,3 +178,27 @@ const showUploading = () => {
     saveBtn.classList.add("d-none")
 
 }
+
+/**
+ * Modern browsers can download files that aren't from same origin this is a workaround to download a remote file
+ * @param `url` Remote URL for the file to be downloaded
+ */
+const Download = async (url, filename) => {
+
+    const blob = await fetch(url).then(r => r.blob());
+    const blobURL = URL.createObjectURL(blob);
+
+    const anchor = document.createElement('a');
+    anchor.href = blobURL;
+    anchor.download = filename;
+
+    // Append to the DOM
+    document.body.appendChild(anchor);
+
+    // Trigger `click` event
+    anchor.click();
+
+    // Remove element from DOM
+    document.body.removeChild(anchor);
+}
+

@@ -6,6 +6,7 @@ import (
 	"github.com/cloudinary/cloudinary-go/v2/api/uploader"
 	"log"
 	"mime/multipart"
+	"os"
 	"sharepoint-app/models"
 	"sharepoint-app/repositories"
 	"strings"
@@ -21,13 +22,13 @@ type FileService interface {
 	Delete(id string) error
 }
 
-const (
-	cloudName = "mfuhr91"
-	apikey    = "552315511962245"
-	apiSecret = "5yw3wnPTVa-JiWC1mBAx2oxB5fQ"
+var (
+	fileRepository repositories.FileRepository
+	
+	cloudName = os.Getenv("CLOUDINARY_CLOUD_NAME")
+	apikey    = os.Getenv("CLOUDINARY_API_KEY")
+	apiSecret = os.Getenv("CLOUDINARY_API_SECRET")
 )
-
-var fileRepository repositories.FileRepository
 
 func NewFilesService(repository repositories.FileRepository) FileService {
 	fileRepository = repository

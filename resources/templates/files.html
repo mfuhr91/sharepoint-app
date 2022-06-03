@@ -30,7 +30,8 @@
                  data-bs-target="#viewModal">
                 <i class="fa-solid {{ .Icon }} fa-4x"></i>
             </div>
-            <div onclick="setModalValues({
+            <div class="col-7"
+                onclick="setModalValues({
                                             id:'{{ .ID }}',
                                             name:'{{ .Name }}',
                                             ext: '{{ .Ext }}',
@@ -39,9 +40,7 @@
                                             url:'{{ .ViewUrl }}',
                                             time:'{{ .Time }}'})"
                  data-bs-toggle="modal"
-                 data-bs-target="#viewModal"
-
-                 class="col-7">
+                 data-bs-target="#viewModal">
                 <div class="row">
                     <span class="text-truncate">
                         {{ .Name }}
@@ -76,7 +75,7 @@
                             </form>
                         </li>
                         <li>
-                            <a class="dropdown-item downloadButton" href="{{ .DownloadUrl }}" download="{{ .Name }}" >
+                            <a onclick="Download('{{ .DownloadUrl }}', '{{ .Name }}.{{ .Ext }}')" class="dropdown-item downloadButton" >
                                 <i class="fa-solid fa-cloud-arrow-down fa-2x"></i>
                             </a>
                         </li>
