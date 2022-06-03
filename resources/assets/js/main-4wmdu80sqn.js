@@ -163,7 +163,6 @@ const showAddBtn = () => {
     setTimeout(() => {
         addBtn.classList.remove("d-none")
     },300)
-    console.log("remove")
 }
 
 const showUploading = () => {
