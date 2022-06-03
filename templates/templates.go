@@ -40,14 +40,3 @@ func FilesRender(c *gin.Context) {
 		"Files": files,
 	})
 }
-
-/*func DeleteConfirmRender(c *gin.Context) {
-	id := c.Query("id")
-
-	c.HTML(http.StatusOK, "delete-confirm.html", gin.H{
-		"Title": "Eliminar Archivo",
-		"ID":    id,
-	})
-	return
-
-}*/
