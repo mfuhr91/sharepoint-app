@@ -71,12 +71,12 @@ func (c fileService) Save(formHeader *multipart.FileHeader) (models.File, error)
 		return models.File{}, err
 	}
 	
-	urlSplited := strings.Split(uploadResult.URL, "upload")
+	urlSplited := strings.Split(uploadResult.SecureURL, "upload")
 	downloadUrl := urlSplited[0] + "upload/fl_attachment" + urlSplited[1]
 	
 	file.PublicID = uploadResult.PublicID
 	file.DownloadUrl = downloadUrl
-	file.ViewUrl = uploadResult.URL
+	file.ViewUrl = uploadResult.SecureURL
 	file, err = fileRepository.Save(file)
 	
 	if err != nil {
