@@ -42,7 +42,7 @@ func (cont *fileController) Save(c *gin.Context) {
 		return
 	}
 	
-	utils.Redirect("/files", c)
+	utils.Redirect("/", c)
 }
 
 func (cont *fileController) Delete(c *gin.Context) {
@@ -60,5 +60,5 @@ func (cont *fileController) Delete(c *gin.Context) {
 		return
 	}
 	
-	utils.Redirect("/files", c)
+	utils.Redirect("/", c)
 }

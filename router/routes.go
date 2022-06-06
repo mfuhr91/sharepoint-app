@@ -36,8 +36,6 @@ func InitRoutes(r *gin.Engine) {
 	
 	r.GET("/", templates.FilesRender)
 	
-	r.GET("/files", templates.FilesRender)
-	
 	r.POST("/files/save", filesController.Save)
 	r.POST("/files/delete/:id", filesController.Delete)
 	
